@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="rgator_model">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.037681 0.0005416 0.38334"
+        rpy="0 0 0" />
+      <mass
+        value="1146.5" />
+      <inertia
+        ixx="186.85"
+        ixy="-0.0060656"
+        ixz="-42.111"
+        iyy="677.82"
+        iyz="-0.002351"
+        izz="717.22" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.1451 0.24706 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="front_left_wheel_link">
+    <inertial>
+      <origin
+        xyz="4.44089209850063E-16 -0.0223230092959477 0"
+        rpy="0 0 0" />
+      <mass
+        value="68.0202335873534" />
+      <inertia
+        ixx="1.8451330504804"
+        ixy="4.81369033677265E-19"
+        ixz="8.04542333548677E-19"
+        iyy="2.55906848679382"
+        iyz="1.20230823572989E-16"
+        izz="1.8451330504804" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/front_left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/front_left_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.998679994403652 0.61 0.0899999999999999"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_left_wheel_link" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="front_right_wheel_link">
+    <inertial>
+      <origin
+        xyz="0 0.0223230092959477 0"
+        rpy="0 0 0" />
+      <mass
+        value="68.0202335873534" />
+      <inertia
+        ixx="1.8451330504804"
+        ixy="-1.08723575624602E-17"
+        ixz="-1.01659412021803E-16"
+        iyy="2.55906848679382"
+        iyz="9.13042816242676E-17"
+        izz="1.8451330504804" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/front_right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/front_right_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="front_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.998679994403652 -0.61 0.0899999999999999"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_right_wheel_link" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="middle_left_wheel_link">
+    <inertial>
+      <origin
+        xyz="0 -0.0223230092959477 0"
+        rpy="0 0 0" />
+      <mass
+        value="68.0202335873534" />
+      <inertia
+        ixx="1.8451330504804"
+        ixy="-5.93594276904364E-17"
+        ixz="-3.57062680215511E-17"
+        iyy="2.55906848679382"
+        iyz="2.35917879413298E-16"
+        izz="1.8451330504804" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/middle_left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/middle_left_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.331320005596349 0.61 0.0900000000000012"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="middle_left_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="middle_right_wheel_link">
+    <inertial>
+      <origin
+        xyz="0 0.0223230092959477 -4.44089209850063E-16"
+        rpy="0 0 0" />
+      <mass
+        value="68.0202335873534" />
+      <inertia
+        ixx="1.8451330504804"
+        ixy="-6.79305383740351E-17"
+        ixz="2.72115687052549E-17"
+        iyy="2.55906848679382"
+        iyz="1.24089728291413E-16"
+        izz="1.8451330504804" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/middle_right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/middle_right_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="middle_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.331320005596348 -0.61 0.0899999999999994"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="middle_right_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="rear_left_wheel_link">
+    <inertial>
+      <origin
+        xyz="-1.11022302462516E-16 -0.0223230092959477 -4.44089209850063E-16"
+        rpy="0 0 0" />
+      <mass
+        value="68.0202335873534" />
+      <inertia
+        ixx="1.8451330504804"
+        ixy="1.11085477564446E-33"
+        ixz="4.56370529158729E-34"
+        iyy="2.55906848679382"
+        iyz="1.90583886938469E-16"
+        izz="1.8451330504804" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/rear_left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/rear_left_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-1.02132000559635 0.61 0.0899999999999999"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_left_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="rear_right_wheel_link">
+    <inertial>
+      <origin
+        xyz="-1.11022302462516E-16 0.0223230092959477 0"
+        rpy="0 0 0" />
+      <mass
+        value="68.0202335873534" />
+      <inertia
+        ixx="1.8451330504804"
+        ixy="-2.06161374086158E-17"
+        ixz="-8.17398264338227E-17"
+        iyy="2.55906848679382"
+        iyz="2.5195914990781E-16"
+        izz="1.8451330504804" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/rear_right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rgator_model/meshes/rear_right_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rear_right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-1.02132000559635 -0.61 0.0900000000000003"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_right_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <joint name="gem_front_camera_joint" type="fixed">
+    <origin xyz="0.394 0 1.19" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="front_single_camera_link"/>
+  </joint>
+
+  <link name="front_single_camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+
+  <!-- IMU -->
+  <link name="IMU_link">
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+
+  </link>
+
+  <joint name="IMU_joint" type="fixed">
+    <origin xyz="-0.246 0 0.05" rpy="0 0 -1.5708"/>
+    <parent link="base_link"/>
+    <child link="IMU_link"/>
+  </joint>
+
+  <!-- GPS -->
+  <link name="GPS_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+        ixx="1.0" ixy="0.0" ixz="0.0"
+        iyy="1.0" iyz="0.0"
+        izz="1.0"/>
+    </inertial>
+  </link>
+
+
+  <joint name="GPS_joint" type="fixed">
+    <origin xyz="-0.246 0 0.05" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="GPS_link"/>
+  </joint>
+
+</robot>

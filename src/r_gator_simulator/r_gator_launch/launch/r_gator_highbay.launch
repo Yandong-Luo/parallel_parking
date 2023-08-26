@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- Gazebo Init -->
+
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <!-- <arg name="world_name" default="highbay_track.world"/>  -->
+  <arg name="world_name" default="highbay_parallel_parking.world"/>
+  <!-- <arg name="world_name" default="highbay_track_with_pedestrian.world"/>  -->
+  <arg name="vehicle_x" default="-12"/>
+  <arg name="vehicle_y" default="-21"/>
+  <arg name="vehicle_yaw" default="3.14"/>
+
+
+  <!-- cartographer slam parameters-->
+  <arg name="configuration_basename" default="r_gator_slam_2d_gazebo.lua"/>
+  <arg name="remap_map_topic" default="false" />
+  <arg name="remap_map_topic_name" default="/cmap" />
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="verbose" value="false"/>
+    <arg name="world_name" value="$(find r_gator_gazebo)/worlds/$(arg world_name)"/>
+  </include>
+
+  <!-- Spawn the r_gator Car -->
+  
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="yaw" default="0"/>
+  <arg name="velodyne_points" default="false"/>
+  
+  <include file="$(find r_gator_gazebo)/launch/r_gator_vehicle.launch">
+    <arg name="x" value="$(arg vehicle_x)"/>
+    <arg name="y" value="$(arg vehicle_y)"/>
+    <arg name="yaw" default="$(arg vehicle_yaw)"/>
+  </include>
+
+  <!--Visualize the objects detected by PointPillar-->
+  <node pkg="detected_objects_visualizer" type="visualize_detected_objects" name="point_pillars_visualization_01"
+        output="screen"  ns="/detection/lidar_detector"/>
+  
+
+  <!-- <node
+    name="robot_transform_broadcaster_1"
+    pkg="tf2_ros"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 /map /base_link"/> -->
+
+  <!-- keyboard controller node -->
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop" output="screen">
+  </node>
+
+  <!-- ackermanner msg to cmd -->
+  <node pkg="r_gator_gazebo_tool" type="cmd_vel_to_ackermann_drive.py" name="cmd_to_ackermann" output="screen">
+  </node>
+
+  <!-- joystick msg to cmd -->
+  <node pkg="r_gator_teleop" type="r_gator_teleop_node" name="r_gator_teleop_node" output="screen">
+  </node>
+
+  <!-- Launch cartographer SLAM -->
+  <!-- <include file="$(find r_gator_launch)/launch/cartographer_slam.launch">
+    <arg name="configuration_basename" value="$(arg configuration_basename)"/>
+    <arg name="remap_map_topic" value="$(arg remap_map_topic)"/>
+    <arg name="remap_map_topic_name" value="$(arg remap_map_topic_name)" />
+  </include> -->
+
+  <!-- 上帝视角里程计 -->
+  <node pkg="r_gator_gazebo_tool" type="r_gator_gazebo_tool_node" name="r_gator_gazebo_tool_node" output="screen" >
+      <param name="robot_name" value="r_gator" />
+      <param name="odom_topic" value="odom"/>
+      <param name="robot_frame_id" value="/base_footprint"/>
+      <param name="Frequency_of_odom_publisher" value="20"/>
+  </node>
+  
+  <!-- pointcloud2 转 scan-->
+  <!-- <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+        <remap from="cloud_in" to="/velodyne_points"/>
+        <remap from="scan" to="/scan"/>
+  </node> -->
+
+  <!-- 如果要让map与base_footprint保持相同的坐标系用下面这个 -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="odom_to_map_transformation" args="-10 -21 0 0 0 1 0 odom map 100" /> -->
+
+  <node pkg="tf" type="static_transform_publisher" name="odom_to_map_transformation" args="-10 -21 0 0 0 0.706825181105366 0.7073882691671998 odom map 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="map_to_path_transformation" args="0 0 0 0 0 0 1 map path 100" />
+  
+  <!-- 用于生成planning的搜索空间 -->
+  <node pkg="manual_map_builder" type="mapbuilder_node.py" name="planning_space" output="screen"/>
+  
+  <!-- hybrid planning规划路径 -->
+  <node pkg="hybrid_astar" type="hybrid_astar" name="hybrid_planner" output="screen"/>
+
+  <!-- stanley controller -->
+  <node pkg="stanley_controller" type="stanley_tracker.py" name="stanley_controller" output="screen"/>
+
+  <!-- RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find r_gator_launch)/config_rviz/r_gator_velodyne.rviz" />
+
+</launch>

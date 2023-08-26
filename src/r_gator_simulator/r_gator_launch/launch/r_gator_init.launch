@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <!-- Gazebo Init -->
+
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="world_name" default="highbay_track.world"/> 
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="verbose" value="false"/>
+    <arg name="world_name" value="$(find r_gator_gazebo)/worlds/$(arg world_name)"/>
+  </include>
+
+  <!-- Spawn the r_gator Car -->
+  
+  <arg name="x" default="-1.5"/>
+  <arg name="y" default="-21"/>
+  <arg name="yaw" default="0.0"/>
+  <arg name="velodyne_points" default="false"/>
+  
+  <include file="$(find r_gator_gazebo)/launch/r_gator_vehicle.launch">
+    <arg name="x" value="$(arg x)"/>
+    <arg name="y" value="$(arg y)"/>
+    <arg name="yaw" default="$(arg yaw)"/>
+  </include>
+  
+  <!-- RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find r_gator_launch)/config_rviz/r_gator_velodyne.rviz" />
+
+</launch>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

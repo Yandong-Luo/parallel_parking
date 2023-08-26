@@ -1,4 +1,4 @@
-![image](https://github.com/Yandong-Luo/parallel_parking/assets/57821839/bbb7e4c6-38b4-42dd-aa60-97dbb55979a8)# parallel_parking
+# parallel_parking
 R Gator Parallel Parking
 
 1. **Perception:** Reimplemented the PointPillars algorithm on real vehicles to detect objects by pytorch, getting the goal position of parallel parking. Generated the grid map as the configuration space for planning. For this part, you can find more details from here: [Reimplement-PointPillar](https://github.com/Yandong-Luo/Reimplement-PointPillar)
